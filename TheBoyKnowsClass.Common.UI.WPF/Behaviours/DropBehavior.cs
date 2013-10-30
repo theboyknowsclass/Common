@@ -11,7 +11,7 @@ namespace TheBoyKnowsClass.Common.UI.WPF.Behaviours
 {
     public class DropBehavior : Behavior<FrameworkElement>
     {
-        private Adorner _adorner;
+        //private Adorner _adorner;
 
         protected override void OnAttached()
         {
@@ -109,10 +109,10 @@ namespace TheBoyKnowsClass.Common.UI.WPF.Behaviours
                 if (source != null) source.Remove(e.Data.GetData(DropType)); 
             }
 
-            if (_adorner != null)
-            {
-                // _adorner.Remove(); 
-            }
+            //if (_adorner != null)
+            //{
+            //    // _adorner.Remove(); 
+            //}
         }
     }
 }

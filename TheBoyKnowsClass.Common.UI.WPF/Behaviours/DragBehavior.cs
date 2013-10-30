@@ -11,7 +11,7 @@ namespace TheBoyKnowsClass.Common.UI.WPF.Behaviours
     public class DragBehavior : Behavior<FrameworkElement>
     {
         private Point? _dragStartPoint;
-        private Adorner _draggedAdorner;
+        //private Adorner _draggedAdorner;
 
         protected override void OnDetaching()
         {
