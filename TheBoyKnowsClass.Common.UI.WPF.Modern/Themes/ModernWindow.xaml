@@ -1,0 +1,204 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:modern="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.Controls"
+                    xmlns:modernConverters="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.Converters"
+                    xmlns:models="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Modern.ViewModels"
+                    xmlns:converters="clr-namespace:TheBoyKnowsClass.Common.UI.WPF.Converters;assembly=TheBoyKnowsClass.Common.UI.WPF"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ModernIconGeometry.xaml" />
+        <ResourceDictionary Source="Buttons.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <modernConverters:StringToUpperConverter x:Key="StringToUpperConverter" />
+    <converters:VisibilityConverter x:Key="VisibilityConverter" />
+    <x:Static Member="models:NavigationManagerViewModel.Instance" x:Key="NavigationManager" />
+    <x:Static Member="models:MessageHandlerViewModel.Instance" x:Key="MessageHandler" />
+    <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type modern:ModernWindow}">
+        <ControlTemplate.Resources>
+            <Style x:Key="SystemButton" BasedOn="{StaticResource MenuBarButton}" TargetType="{x:Type Button}">
+                <Setter Property="VerticalAlignment" Value="Top" />
+                <Setter Property="Width" Value="36" />
+                <Setter Property="Height" Value="24" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ButtonBase}">
+                            <Border Name="Chrome"
+                                Background="{TemplateBinding Background}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                SnapsToDevicePixels="True">
+                                <ContentPresenter Margin="{TemplateBinding Padding}"
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              RecognizesAccessKey="True"
+                                              SnapsToDevicePixels="True"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsEnabled" Value="True" />
+                                        <Condition Property="IsMouseOver" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Opacity" Value="0.8" />
+                                    <Setter Property="Background" Value="{DynamicResource BackgroundHighlight}" />
+                                </MultiTrigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsEnabled" Value="True" />
+                                        <Condition Property="IsPressed" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter Property="Opacity" Value="1" />
+                                    <Setter Property="Background" Value="{DynamicResource Accent}" />
+                                </MultiTrigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Opacity" Value="0" />
+                                    <Setter Property="Background" Value="{DynamicResource BackgroundHighlight}" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ControlTemplate.Resources>
+        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+            <AdornerDecorator>
+                <Grid x:Name="LayoutRoot">
+                    <Grid x:Name="MessageBox">
+                        <modern:ModernMessageBoxControl />
+                    </Grid>
+                    <DockPanel x:Name="WindowDockPanel" Background="{DynamicResource Background}">
+                        <Grid x:Name="TitleBarGrid" DockPanel.Dock="Top">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="5, 5, 0, 0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Button Style="{StaticResource MenuBarButton}" Command="{Binding Path=GoBackCommand, Source={StaticResource NavigationManager}}">
+                                    <Button.Visibility>
+                                        <Binding Source="{StaticResource NavigationManager}" Path="CanGoBack" Converter="{StaticResource VisibilityConverter}" >
+                                            <Binding.ConverterParameter>
+                                                <system:Boolean>True</system:Boolean>
+                                            </Binding.ConverterParameter>
+                                        </Binding>
+                                    </Button.Visibility>
+                                    <Grid Width="48" Height="48">
+                                        <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource BaseCircleGeometry}"/>
+                                        <Path Stretch="Uniform" Width="24" Height="24" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource LeftArrowGeometry}"/>
+                                    </Grid>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                <Button Style="{StaticResource MenuBarButton}"  VerticalAlignment="Bottom" Margin="0 0 30 10" Command="{Binding Path=ShowSettingsCommand, Source={StaticResource NavigationManager}}">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Grid Width="16" Height="16">
+                                            <Path Stretch="Fill" Fill="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}" Data="{StaticResource SettingsGeometry}"/>
+                                        </Grid>
+                                        <Label Style="{DynamicResource ItemHeader}" VerticalAlignment="Center" Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=Button}, Path=Foreground}">Settings</Label>
+                                    </StackPanel>
+                                </Button>
+                                <Grid Width="48" Height="48" Margin="0 0 50 0" Background="{DynamicResource Accent}" >
+                                    <ContentControl x:Name="LogoControl" Content="{Binding Path=Logo, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type modern:ModernWindow}}}" />
+                                </Grid>
+                                <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}" Style="{StaticResource SystemButton}">
+                                    <Canvas Width="9" Height="8">
+                                        <Path Data="M0,7 L9,7 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                                    </Canvas>
+                                </Button>
+                                <Button x:Name="Restore" Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}" Style="{StaticResource SystemButton}">
+                                    <Canvas Width="9" Height="8">
+                                        <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z" Stretch="Fill" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1" IsEnabled="False"  />
+                                    </Canvas>
+                                </Button>
+                                <Button x:Name="Maximize" Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}" Style="{StaticResource SystemButton}">
+                                    <Canvas Width="9" Height="8" >
+                                        <Path Data="M0,1 L9,1 L9,8 L0,8 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                                    </Canvas>
+                                </Button>
+                                <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}" Style="{StaticResource SystemButton}">
+                                    <Canvas Width="9" Height="8" >
+                                        <Path Data="M 0,0 L 9,8 M 9,0 L0,8 Z" Width="9" Height="8" VerticalAlignment="Center" HorizontalAlignment="Center" Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                                    </Canvas>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                        <Grid ZIndex="100" DockPanel.Dock="Left" Background="{DynamicResource Background}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.LayoutTransform>
+                                <RotateTransform Angle="-90"></RotateTransform>
+                            </Grid.LayoutTransform>
+                            <Label Grid.Column="1" Style="{DynamicResource AccentedItemHeader}" Margin="0, 0, 30, 0"  DataContext="{TemplateBinding Title}" Content="{Binding Converter={StaticResource StringToUpperConverter}}" />
+                        </Grid>
+                        <Grid ZIndex="1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <modern:ModernFrame x:Name="MainContentFrame" Grid.Row="0" Content="{TemplateBinding Content}"  NavigationUIVisibility="Hidden" />
+                            <Grid Grid.Row="1">
+                                <Path x:Name="ResizeGrip" Visibility="Collapsed" Width="12" Height="12" Margin="1" HorizontalAlignment="Right" 
+                                                  Stroke="{DynamicResource Accent}"
+                                                  StrokeThickness="1"
+                                                  Stretch="None"
+                                                  Data="F1 M1,10 L3,10 M5,10 L7,10 M9,10 L11,10 M2,9 L2,11 M6,9 L6,11 M10,9 L10,11 M5,6 L7,6 M9,6 L11,6 M6,5 L6,7 M10,5 L10,7 M9,2 L11,2 M10,1 L10,3" />
+                            </Grid>
+                        </Grid>
+                    </DockPanel>
+                </Grid>
+            </AdornerDecorator>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="WindowState" Value="Maximized">
+                <Setter TargetName="Maximize" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="Restore" Property="Visibility" Value="Visible" />
+                <Setter TargetName="LayoutRoot" Property="Margin" Value="6" />
+            </Trigger>
+            <Trigger Property="WindowState" Value="Normal">
+                <Setter TargetName="Maximize" Property="Visibility" Value="Visible" />
+                <Setter TargetName="Restore" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="ResizeMode" Value="CanResizeWithGrip" />
+                    <Condition Property="WindowState" Value="Normal" />
+                </MultiTrigger.Conditions>
+                <Setter TargetName="ResizeGrip" Property="Visibility" Value="Visible" />
+            </MultiTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource MessageHandler}, Path=IsVisible}" Value="False">
+                <Setter TargetName="MessageBox" Property="Opacity" Value="0" />
+                <Setter TargetName="MessageBox" Property="Panel.ZIndex" Value="0" />
+                <Setter TargetName="WindowDockPanel" Property="Effect">
+                    <Setter.Value>
+                        <BlurEffect Radius="0"></BlurEffect>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Source={StaticResource MessageHandler}, Path=IsVisible}" Value="True">
+                <Setter TargetName="MessageBox" Property="Opacity" Value="1" />
+                <Setter TargetName="MessageBox" Property="Panel.ZIndex" Value="1000" />
+                <Setter TargetName="WindowDockPanel" Property="Effect">
+                    <Setter.Value>
+                        <BlurEffect Radius="3"></BlurEffect>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="ModernWindowStyle" TargetType="{x:Type modern:ModernWindow}">
+        <Setter Property="WindowStyle" Value="None" />
+        <Setter Property="AllowsTransparency" Value="True" />
+        <Setter Property="ResizeMode" Value="CanResizeWithGrip" />
+        <Setter Property="UseLayoutRounding" Value="True" />
+        <Setter Property="TextOptions.TextFormattingMode" Value="Ideal" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Accent}" />
+        <Setter Property="Template" Value="{StaticResource WindowTemplateKey}" />
+        <Setter Property="WindowChrome.WindowChrome">
+            <Setter.Value>
+                <WindowChrome CornerRadius="0" GlassFrameThickness="1" CaptionHeight="48" UseAeroCaptionButtons="True" NonClientFrameEdges="None" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

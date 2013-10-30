@@ -1,0 +1,38 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Generic.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="LabelBase" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Control}}">
+        <Setter Property="FontSize" Value="11pt" />
+    </Style>
+    <Style x:Key="HeaderLabelBase" TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Control}}">
+        <Setter Property="FontWeight" Value="Light"></Setter>
+        <Setter Property="FontSize" Value="20pt" />
+    </Style>
+    <Style TargetType="{x:Type Label}" BasedOn="{StaticResource LabelBase}">
+    </Style>
+    <Style x:Key="ItemHeaderBase" TargetType="{x:Type Label}" BasedOn="{StaticResource LabelBase}">
+        <Setter Property="FontFamily" Value="Segoe UI Semibold" />
+    </Style>
+    <Style x:Key="PageHeader" TargetType="{x:Type Label}" BasedOn="{StaticResource HeaderLabelBase}">
+        <Setter Property="FontSize" Value="42pt" />
+    </Style>
+    <Style x:Key="PageSubHeader" TargetType="{x:Type Label}" BasedOn="{StaticResource HeaderLabelBase}">
+    </Style>
+    <Style x:Key="AccentedItemHeader" TargetType="{x:Type Label}" BasedOn="{StaticResource ItemHeaderBase}">
+        <Setter Property="Foreground" Value="{DynamicResource Background}" />
+        <Setter Property="Background" Value="{DynamicResource Accent}" />
+    </Style>
+    <Style x:Key="ItemHeader" TargetType="{x:Type Label}" BasedOn="{StaticResource ItemHeaderBase}">
+    </Style>
+    <Style x:Key="ItemHeaderSecondary" TargetType="{x:Type Label}" BasedOn="{StaticResource ItemHeaderBase}">
+        <Setter Property="Opacity" Value="0.6" />
+    </Style>
+    <Style x:Key="TertiaryInfo" TargetType="{x:Type Label}" BasedOn="{StaticResource LabelBase}">
+        <Setter Property="FontSize" Value="9pt" />
+    </Style>
+    <Style x:Key="TertiaryInfoSecondary" TargetType="{x:Type Label}" BasedOn="{StaticResource TertiaryInfo}">
+        <Setter Property="Opacity" Value="0.6" />
+    </Style>
+</ResourceDictionary>

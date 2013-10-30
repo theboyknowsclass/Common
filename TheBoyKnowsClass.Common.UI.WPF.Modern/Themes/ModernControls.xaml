@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/Generic.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/Buttons.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/Labels.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ScrollBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernTextBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernWindow.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernListBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernComboBox.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernMessageBoxControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernFrame.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernTabControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernTile.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernIconGeometry.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

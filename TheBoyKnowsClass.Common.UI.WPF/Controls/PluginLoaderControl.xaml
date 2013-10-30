@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="TheBoyKnowsClass.Common.UI.WPF.Controls.PluginLoaderControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d">
+    <Grid>
+        <GroupBox Header="Plugins" Name="pluginsGroupBox" Margin="0">
+            <Grid>
+                <ListBox Margin="6,6,6,35" Name="pluginListBox" />
+                <Button Content="Configure" Margin="87,0,0,6" Name="configurePluginButton" HorizontalAlignment="Left" Width="75" Height="23" VerticalAlignment="Bottom" />
+                <Button Content="Enable" Height="23" HorizontalAlignment="Left" Margin="6,0,0,6" Name="enableDisablePluginButton" VerticalAlignment="Bottom" Width="75" />
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

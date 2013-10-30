@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    <system:String x:Key="AccentName">Orange</system:String>
+    <system:String x:Key="AccentGroup">Windows Store</system:String>
+    <system:Int16 x:Key="SortOrder">50</system:Int16>
+    <Color x:Key="AccentColor">#FFF09609</Color>
+    <SolidColorBrush x:Key="Accent" Color="{DynamicResource AccentColor}" />
+</ResourceDictionary>
