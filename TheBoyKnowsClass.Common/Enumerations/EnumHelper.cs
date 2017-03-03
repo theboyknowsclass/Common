@@ -9,7 +9,7 @@ namespace TheBoyKnowsClass.Common.Enumerations
         public static T GetEnumAttribute<T>(this Enum e)
         where T : Attribute
         {
-            FieldInfo fieldInfo = e.GetType().GetField(e.ToString());
+            FieldInfo fieldInfo = e.GetType().GetRuntimeField(e.ToString());
 
             var enumAttributes = (T[])fieldInfo.GetCustomAttributes(typeof(T), false);
 
@@ -24,7 +24,7 @@ namespace TheBoyKnowsClass.Common.Enumerations
         public static T? GetEnumWithDescription<T>(string description)
             where T : struct
         {
-            if (!typeof(T).IsEnum)
+            if (!typeof(T).GetTypeInfo().IsEnum)
             {
                 throw new ArgumentException("GetEnumWithDescription<T> can only be called for types derived from System.Enum", "T");
             }
@@ -42,7 +42,7 @@ namespace TheBoyKnowsClass.Common.Enumerations
 
         public static T[] GetValues<T>() where T : struct
         {
-            if (!typeof(T).IsEnum)
+            if (!typeof(T).GetTypeInfo().IsEnum)
             {
                 throw new ArgumentException("GetValues<T> can only be called for types derived from System.Enum", "T");
             }
@@ -60,7 +60,7 @@ namespace TheBoyKnowsClass.Common.Enumerations
         {
             var enumT = e as Enum;
 
-            if (!typeof(T).IsEnum)
+            if (!typeof(T).GetTypeInfo().IsEnum)
             {
                 throw new ArgumentException("GetEnumDescription<T> can only be called for types derived from System.Enum", "T");
             }

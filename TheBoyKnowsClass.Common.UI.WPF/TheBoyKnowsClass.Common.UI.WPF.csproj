@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -9,10 +9,11 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>TheBoyKnowsClass.Common.UI.WPF</RootNamespace>
     <AssemblyName>TheBoyKnowsClass.Common.UI.WPF</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -117,16 +118,6 @@
     <Compile Include="ViewModels\UserAccountControlViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TheBoyKnowsClass.Common.UI\TheBoyKnowsClass.Common.UI.csproj">
-      <Project>{07065C47-3C25-4CEF-B247-60847D0DC45B}</Project>
-      <Name>TheBoyKnowsClass.Common.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\TheBoyKnowsClass.Common\TheBoyKnowsClass.Common.csproj">
-      <Project>{DB5CA9D7-EF84-41E2-8C5F-57555F7D9F3D}</Project>
-      <Name>TheBoyKnowsClass.Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Controls\PluginLoaderControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -135,6 +126,19 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TheBoyKnowsClass.Common.UI\TheBoyKnowsClass.Common.UI.csproj">
+      <Project>{07065c47-3c25-4cef-b247-60847d0dc45b}</Project>
+      <Name>TheBoyKnowsClass.Common.UI</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TheBoyKnowsClass.Common\TheBoyKnowsClass.Common.csproj">
+      <Project>{db5ca9d7-ef84-41e2-8c5f-57555f7d9f3d}</Project>
+      <Name>TheBoyKnowsClass.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
