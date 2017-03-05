@@ -5,6 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/Buttons.xaml" />
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/Labels.xaml" />
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ScrollBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernTextBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernWindow.xaml" />
         <ResourceDictionary Source="pack://application:,,,/TheBoyKnowsClass.Common.UI.WPF.Modern;component/Themes/ModernListBox.xaml" />
